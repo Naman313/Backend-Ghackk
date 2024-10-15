@@ -1,4 +1,4 @@
-import path from "path"; 
+
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -13,8 +13,17 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // CORS middleware - allow requests from the frontend application
+const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app'];
 app.use(cors({
-    origin: 'https://frontend-ghackk.vercel.app', // Vercel frontend URL
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps, Postman) or check if origin is allowed
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true, // Include this if you are sending cookies or authorization headers
 }));
 
 // Allow preflight requests for all routes
