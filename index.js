@@ -13,17 +13,17 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // CORS middleware - allow requests from the frontend application
-const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app/, https://frontend-ghackk.vercel.app', "https://frontend-ghackk.vercel.app/signup"];
-app.use(cors({
-    origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps, Postman) or check if origin is allowed
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true, // Include this if you are sending cookies or authorization headers
+// const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app/, https://frontend-ghackk.vercel.app', "https://frontend-ghackk.vercel.app/signup"];
+app.use(cors((req, callback) => {
+    const origin = req.header('Origin');
+    
+    if (allowedOrigins.includes(origin)) {
+        // Allow the origin
+        callback(null, { origin: true });
+    } else {
+        // Block the origin (it will not include CORS headers)
+        callback(null, { origin: false });
+    }
 }));
 
 // Allow preflight requests for all routes
