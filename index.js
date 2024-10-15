@@ -7,7 +7,6 @@ import favoritesRoutes from "./routes/favoritesRoutes.js";
 import connectToDB from "./db/connectToDb.js";
 import cors from 'cors';
 
-const __dirname = path.resolve(); // Get the current directory path
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 
@@ -15,12 +14,14 @@ const app = express();
 
 // CORS middleware - allow requests from the frontend application
 app.use(cors({
-    origin: 'https://frontend-ghackk.vercel.app', // Change this to your frontend URL on Render after deployment
+    origin: 'https://frontend-ghackk.vercel.app', // Vercel frontend URL
 }));
 
+// Allow preflight requests for all routes
+app.options('*', cors());
 
-// Add middleware to parse JSON request bodies
-app.use(express.json()); // Necessary for parsing incoming JSON payloads
+// Middleware to parse JSON request bodies
+app.use(express.json()); 
 
 // Middleware for cookie parsing
 app.use(cookieParser());
@@ -28,14 +29,6 @@ app.use(cookieParser());
 // Auth routes middleware
 app.use("/api/auth", authroutes);
 app.use("/fav", favoritesRoutes);
-
-// Serve static files from the React app's build folder
-app.use(express.static(path.join(__dirname, 'frontend/build')));
-
-// Handle any other requests by serving the React app
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
-});
 
 // Connect to the database and start the server
 app.listen(PORT, () => {
