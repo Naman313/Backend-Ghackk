@@ -15,7 +15,7 @@ const app = express();
 const corsOptions = {
     origin: ['https://frontend-ghackk.vercel.app', 'https://frontend-ghackk.vercel.app/', '*'],  // Your frontend domain
     credentials: true,  // Allow credentials such as cookies
-    
+     
 };
 
 app.use(cors(corsOptions)); 
