@@ -34,4 +34,6 @@ app.use("/fav", favoritesRoutes);
 app.listen(PORT, () => {
     connectToDB();
     console.log(`Server running on port ${PORT}`);
+
+
 });
