@@ -12,8 +12,9 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-// CORS middleware - allow requests from the frontend application
-// const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app/, https://frontend-ghackk.vercel.app', "https://frontend-ghackk.vercel.app/signup"];
+// Allow both localhost (development) and Vercel (production)
+const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app'];
+
 app.use(cors((req, callback) => {
     const origin = req.header('Origin');
     
@@ -26,8 +27,11 @@ app.use(cors((req, callback) => {
     }
 }));
 
-// Allow preflight requests for all routes
+// Handle preflight requests
 app.options('*', cors());
+
+
+
 
 // Middleware to parse JSON request bodies
 app.use(express.json()); 
