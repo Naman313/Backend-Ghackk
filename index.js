@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // CORS middleware - allow requests from the frontend application
-const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app/'];
+const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app/, https://frontend-ghackk.vercel.app', "https://frontend-ghackk.vercel.app/signup"];
 app.use(cors({
     origin: function (origin, callback) {
         // Allow requests with no origin (like mobile apps, Postman) or check if origin is allowed
