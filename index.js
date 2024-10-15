@@ -13,9 +13,9 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 const corsOptions = {
-    origin: 'https://frontend-ghackk.vercel.app',  // Your frontend domain
+    origin: ['https://frontend-ghackk.vercel.app', 'https://frontend-ghackk.vercel.app/', '*'],  // Your frontend domain
     credentials: true,  // Allow credentials such as cookies
-    optionsSuccessStatus: 200  // For legacy browser support
+    
 };
 
 app.use(cors(corsOptions)); 
