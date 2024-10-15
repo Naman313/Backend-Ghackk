@@ -15,7 +15,13 @@ const app = express();
 // Allow both localhost (development) and Vercel (production)
 // const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app'];
 
-app.use(cors({ origin: '*' }));
+const corsOptions = {
+  origin: 'https://frontend-ghackk.vercel.app',  // Correct origin without trailing slash
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
 
 // Handle preflight requests
 // app.options('*', cors());
