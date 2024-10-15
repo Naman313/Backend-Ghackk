@@ -15,8 +15,9 @@ const app = express();
 
 // CORS middleware - allow requests from the frontend application
 app.use(cors({
-    origin: 'https://frontend-ghackk.vercel.app/', // Change this to your frontend URL on Render after deployment
+    origin: 'https://frontend-ghackk.vercel.app', // Change this to your frontend URL on Render after deployment
 }));
+
 
 // Add middleware to parse JSON request bodies
 app.use(express.json()); // Necessary for parsing incoming JSON payloads
