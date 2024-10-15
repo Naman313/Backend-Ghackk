@@ -2,8 +2,8 @@ import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import authroutes from "../backend/routes/authroutes.js";
-import favoritesRoutes from "../backend/routes/favoritesRoutes.js";
+import authroutes from "./routes/authroutes.js";
+import favoritesRoutes from "./routes/favoritesRoutes.js";
 import connectToDB from "./db/connectToDb.js";
 import cors from 'cors';
 
