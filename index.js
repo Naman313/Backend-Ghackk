@@ -15,7 +15,7 @@ const app = express();
 
 // CORS middleware - allow requests from the frontend application
 app.use(cors({
-    origin: 'http://localhost:3000', // Change this to your frontend URL on Render after deployment
+    origin: 'https://frontend-ghackk.vercel.app/', // Change this to your frontend URL on Render after deployment
 }));
 
 // Add middleware to parse JSON request bodies
