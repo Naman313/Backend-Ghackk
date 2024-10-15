@@ -13,19 +13,9 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // Allow both localhost (development) and Vercel (production)
-const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app'];
+// const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app'];
 
-app.use(cors((req, callback) => {
-    const origin = req.header('Origin');
-    
-    if (allowedOrigins.includes(origin)) {
-        // Allow the origin
-        callback(null, { origin: true });
-    } else {
-        // Block the origin (it will not include CORS headers)
-        callback(null, { origin: false });
-    }
-}));
+app.use(cors());
 
 // Handle preflight requests
 app.options('*', cors());
