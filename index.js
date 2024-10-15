@@ -12,24 +12,15 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-// Allow both localhost (development) and Vercel (production)
-// const allowedOrigins = ['http://localhost:3000', 'https://frontend-ghackk.vercel.app'];
+const corsOptions = {
+    origin: 'https://frontend-ghackk.vercel.app',  // Your frontend domain
+    credentials: true,  // Allow credentials such as cookies
+    optionsSuccessStatus: 200  // For legacy browser support
+};
 
-// const corsOptions = {
-//   origin: 'https://frontend-ghackk.vercel.app',  // Correct origin without trailing slash
-//   optionsSuccessStatus: 200
-// };
-
-app.use(cors({ origin: '*' }));
+app.use(cors(corsOptions)); 
 
 
-// Handle preflight requests
-// app.options('*', cors());
-
-
-
-
-// Middleware to parse JSON request bodies
 app.use(express.json()); 
 
 // Middleware for cookie parsing
